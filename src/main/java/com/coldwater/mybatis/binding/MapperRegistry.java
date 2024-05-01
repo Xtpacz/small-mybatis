@@ -1,5 +1,6 @@
 package com.coldwater.mybatis.binding;
 
+import com.coldwater.mybatis.session.Configuration;
 import com.coldwater.mybatis.session.SqlSession;
 import cn.hutool.core.lang.ClassScanner;
 
@@ -12,6 +13,12 @@ import java.util.Set;
  */
 public class MapperRegistry {
 
+    private Configuration config;
+
+    public MapperRegistry(Configuration config) {
+        this.config = config;
+    }
+
     /**
      * 将已添加的映射器代理加入到 HashMap
      */
@@ -20,8 +27,7 @@ public class MapperRegistry {
     public <T> T getMapper(Class<T> type, SqlSession sqlSession) {
         final MapperProxyFactory<T> mapperProxyFactory = (MapperProxyFactory<T>) knownMappers.get(type);
         if (mapperProxyFactory == null) {
-            throw new RuntimeException("Type " + type + " is not known to the MapperRegistry." +
-                    "检查扫描mapper包是否的路径是否添加正确.");
+            throw new RuntimeException("Type " + type + " is not known to the MapperRegistry.");
         }
         try {
             return mapperProxyFactory.newInstance(sqlSession);
@@ -38,7 +44,6 @@ public class MapperRegistry {
                 throw new RuntimeException("Type " + type + " is already known to the MapperRegistry.");
             }
             // 注册映射器代理工厂
-
             knownMappers.put(type, new MapperProxyFactory<>(type));
         }
     }
@@ -48,8 +53,6 @@ public class MapperRegistry {
     }
 
     public void addMappers(String packageName) {
-        // 通过包的地址去扫描出mapper
-        // 通过反射
         Set<Class<?>> mapperSet = ClassScanner.scanPackage(packageName);
         for (Class<?> mapperClass : mapperSet) {
             addMapper(mapperClass);
