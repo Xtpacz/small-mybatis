@@ -1,28 +1,39 @@
 package com.coldwater.mybatis.session;
 
 import com.coldwater.mybatis.binding.MapperRegistry;
+import com.coldwater.mybatis.datasource.druid.DruidDataSourceFactory;
+import com.coldwater.mybatis.mapping.Environment;
 import com.coldwater.mybatis.mapping.MappedStatement;
+import com.coldwater.mybatis.transaction.jdbc.JdbcTransactionFactory;
+import com.coldwater.mybatis.type.TypeAliasRegistry;
 
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @description 配置项
+ * @description 配置项，贯穿始终
  * @author：小龙哥
- * @date: 2024/5/1
+ * @date: 2024/5/2
  * @Copyright： 没有copyright
  */
 public class Configuration {
 
-    /**
-     * 映射注册机
-     */
+    //环境
+    protected Environment environment;
+
+    // 映射注册机
     protected MapperRegistry mapperRegistry = new MapperRegistry(this);
 
-    /**
-     * 映射的语句，存在Map里
-     */
+    // 映射的语句，存在Map里
     protected final Map<String, MappedStatement> mappedStatements = new HashMap<>();
+
+    // 类型别名注册机
+    protected final TypeAliasRegistry typeAliasRegistry = new TypeAliasRegistry();
+
+    public Configuration() {
+        typeAliasRegistry.registerAlias("JDBC", JdbcTransactionFactory.class);
+        typeAliasRegistry.registerAlias("DRUID", DruidDataSourceFactory.class);
+    }
 
     public void addMappers(String packageName) {
         mapperRegistry.addMappers(packageName);
@@ -48,4 +59,15 @@ public class Configuration {
         return mappedStatements.get(id);
     }
 
+    public TypeAliasRegistry getTypeAliasRegistry() {
+        return typeAliasRegistry;
+    }
+
+    public Environment getEnvironment() {
+        return environment;
+    }
+
+    public void setEnvironment(Environment environment) {
+        this.environment = environment;
+    }
 }

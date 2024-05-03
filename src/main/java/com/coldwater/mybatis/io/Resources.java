@@ -7,9 +7,6 @@ import java.io.Reader;
 
 /**
  * @description 通过类加载器获得resource的辅助类
- * @author：小龙哥
- * @date: 2024/5/1
- * @Copyright： 没有copyright
  */
 public class Resources {
 

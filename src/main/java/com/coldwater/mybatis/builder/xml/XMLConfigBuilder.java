@@ -1,29 +1,28 @@
 package com.coldwater.mybatis.builder.xml;
 
 import com.coldwater.mybatis.builder.BaseBuilder;
+import com.coldwater.mybatis.datasource.DataSourceFactory;
 import com.coldwater.mybatis.io.Resources;
+import com.coldwater.mybatis.mapping.BoundSql;
+import com.coldwater.mybatis.mapping.Environment;
 import com.coldwater.mybatis.mapping.MappedStatement;
 import com.coldwater.mybatis.mapping.SqlCommandType;
 import com.coldwater.mybatis.session.Configuration;
+import com.coldwater.mybatis.transaction.TransactionFactory;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 import org.xml.sax.InputSource;
 
+import javax.sql.DataSource;
 import java.io.Reader;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
  * @description XML配置构建器，建造者模式，继承BaseBuilder
- * @author：小龙哥
- * @date: 2024/5/1
- * @Copyright： 没有copyright
  */
 public class XMLConfigBuilder extends BaseBuilder {
 
@@ -49,12 +48,60 @@ public class XMLConfigBuilder extends BaseBuilder {
      */
     public Configuration parse() {
         try {
+            // 环境
+            environmentsElement(root.element("environments"));
             // 解析映射器
             mapperElement(root.element("mappers"));
         } catch (Exception e) {
             throw new RuntimeException("Error parsing SQL Mapper Configuration. Cause: " + e, e);
         }
         return configuration;
+    }
+
+    /**
+     * <environments default="development">
+     * <environment id="development">
+     * <transactionManager type="JDBC">
+     * <property name="..." value="..."/>
+     * </transactionManager>
+     * <dataSource type="POOLED">
+     * <property name="driver" value="${driver}"/>
+     * <property name="url" value="${url}"/>
+     * <property name="username" value="${username}"/>
+     * <property name="password" value="${password}"/>
+     * </dataSource>
+     * </environment>
+     * </environments>
+     */
+    private void environmentsElement(Element context) throws Exception {
+        String environment = context.attributeValue("default");
+
+        List<Element> environmentList = context.elements("environment");
+        for (Element e : environmentList) {
+            String id = e.attributeValue("id");
+            if (environment.equals(id)) {
+                // 事务管理器
+                TransactionFactory txFactory = (TransactionFactory) typeAliasRegistry.resolveAlias(e.element("transactionManager").attributeValue("type")).newInstance();
+
+                // 数据源
+                Element dataSourceElement = e.element("dataSource");
+                DataSourceFactory dataSourceFactory = (DataSourceFactory) typeAliasRegistry.resolveAlias(dataSourceElement.attributeValue("type")).newInstance();
+                List<Element> propertyList = dataSourceElement.elements("property");
+                Properties props = new Properties();
+                for (Element property : propertyList) {
+                    props.setProperty(property.attributeValue("name"), property.attributeValue("value"));
+                }
+                dataSourceFactory.setProperties(props);
+                DataSource dataSource = dataSourceFactory.getDataSource();
+
+                // 构建
+                Environment.Builder environmentBuilder = new Environment.Builder(id)
+                        .transactionFactory(txFactory)
+                        .dataSource(dataSource);
+
+                configuration.setEnvironment(environmentBuilder.build());
+            }
+        }
     }
 
     private void mapperElement(Element mappers) throws Exception {
@@ -67,7 +114,7 @@ public class XMLConfigBuilder extends BaseBuilder {
             Element root = document.getRootElement();
             //命名空间
             String namespace = root.attributeValue("namespace");
-            System.out.println("namespace = " + namespace);
+
             // SELECT
             List<Element> selectNodes = root.elements("select");
             for (Element node : selectNodes) {
@@ -80,7 +127,7 @@ public class XMLConfigBuilder extends BaseBuilder {
                 Map<Integer, String> parameter = new HashMap<>();
                 Pattern pattern = Pattern.compile("(#\\{(.*?)})");
                 Matcher matcher = pattern.matcher(sql);
-                for (int i = 1; matcher.find(); i++) { // 正则表达式
+                for (int i = 1; matcher.find(); i++) {
                     String g1 = matcher.group(1);
                     String g2 = matcher.group(2);
                     parameter.put(i, g2);
@@ -90,13 +137,15 @@ public class XMLConfigBuilder extends BaseBuilder {
                 String msId = namespace + "." + id;
                 String nodeName = node.getName();
                 SqlCommandType sqlCommandType = SqlCommandType.valueOf(nodeName.toUpperCase(Locale.ENGLISH));
-                // msId: namespace包名 + 方法名
-                MappedStatement mappedStatement = new MappedStatement.Builder(configuration, msId, sqlCommandType, parameterType, resultType, sql, parameter).build();
+
+                BoundSql boundSql = new BoundSql(sql, parameter, parameterType, resultType);
+
+                MappedStatement mappedStatement = new MappedStatement.Builder(configuration, msId, sqlCommandType, boundSql).build();
                 // 添加解析 SQL
                 configuration.addMappedStatement(mappedStatement);
             }
 
-            // 注册Mapper映射器， 将当前解析的mapper注册进来
+            // 注册Mapper映射器
             configuration.addMapper(Resources.classForName(namespace));
         }
     }
