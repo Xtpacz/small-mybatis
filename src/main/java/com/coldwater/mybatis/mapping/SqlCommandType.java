@@ -4,8 +4,8 @@ package com.coldwater.mybatis.mapping;
  * @author 小龙哥
  * @description SQL 指令类型
  * @date 2024/04/06
-  
- * @copyright 无
+ * @github https://github.com/xtpacz
+ * @copyright 无copyright
  */
 public enum SqlCommandType {
 

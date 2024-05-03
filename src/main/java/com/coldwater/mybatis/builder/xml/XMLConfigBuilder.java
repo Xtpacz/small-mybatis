@@ -22,7 +22,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
+ * @author 小龙哥
  * @description XML配置构建器，建造者模式，继承BaseBuilder
+ * @date 2024/04/06
+ * @github https://github.com/xtpacz
+ * @copyright 无copyright
  */
 public class XMLConfigBuilder extends BaseBuilder {
 

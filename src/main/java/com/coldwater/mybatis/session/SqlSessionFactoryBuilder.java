@@ -9,8 +9,8 @@ import java.io.Reader;
  * @author 小龙哥
  * @description 构建SqlSessionFactory的工厂
  * @date 2024/04/06
-  
- * @copyright 无
+ * @github https://github.com/xtpacz
+ * @copyright 无copyright
  */
 public class SqlSessionFactoryBuilder {
 

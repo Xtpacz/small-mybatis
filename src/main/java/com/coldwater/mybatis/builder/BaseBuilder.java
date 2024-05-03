@@ -7,8 +7,8 @@ import com.coldwater.mybatis.type.TypeAliasRegistry;
  * @author 小龙哥
  * @description 构建器的基类，建造者模式
  * @date 2024/04/06
-  
- * @copyright 无
+ * @github https://github.com/xtpacz
+ * @copyright 无copyright
  */
 public abstract class BaseBuilder {
 

@@ -11,8 +11,8 @@ import java.lang.reflect.Method;
  * @author 小龙哥
  * @description 映射器方法
  * @date 2024/04/06
-  
- * @copyright 无
+ * @github https://github.com/xtpacz
+ * @copyright 无copyright
  */
 public class MapperMethod {
 

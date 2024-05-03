@@ -6,8 +6,8 @@ import java.sql.Connection;
  * @author 小龙哥
  * @description 事务的隔离级别
  * @date 2024/04/13
-  
- * @copyright 无
+ * @github https://github.com/xtpacz
+ * @copyright 无copyright
  */
 public enum TransactionIsolationLevel {
 

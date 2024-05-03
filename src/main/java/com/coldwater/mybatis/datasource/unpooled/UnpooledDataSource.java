@@ -10,7 +10,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 /**
+ * @author 小龙哥
  * @description 无池化数据源实现
+ * @date 2024/04/20
+ * @github https://github.com/xtpacz
+ * @copyright 无copyright
  */
 public class UnpooledDataSource implements DataSource {
 
@@ -246,5 +250,4 @@ public class UnpooledDataSource implements DataSource {
     public void setDefaultTransactionIsolationLevel(Integer defaultTransactionIsolationLevel) {
         this.defaultTransactionIsolationLevel = defaultTransactionIsolationLevel;
     }
-
 }

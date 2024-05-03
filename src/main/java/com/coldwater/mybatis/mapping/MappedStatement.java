@@ -6,8 +6,8 @@ import com.coldwater.mybatis.session.Configuration;
  * @author 小龙哥
  * @description 映射语句类
  * @date 2024/04/06
-  
- * @copyright 无
+ * @github https://github.com/xtpacz
+ * @copyright 无copyright
  */
 public class MappedStatement {
 

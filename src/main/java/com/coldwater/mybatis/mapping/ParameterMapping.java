@@ -7,8 +7,8 @@ import com.coldwater.mybatis.type.JdbcType;
  * @author 小龙哥
  * @description 参数映射 #{property,javaType=int,jdbcType=NUMERIC}
  * @date 2024/04/12
-  
- * @copyright 无
+ * @github https://github.com/xtpacz
+ * @copyright 无copyright
  */
 public class ParameterMapping {
 

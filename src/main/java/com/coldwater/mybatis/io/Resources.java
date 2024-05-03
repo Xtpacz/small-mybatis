@@ -9,8 +9,8 @@ import java.io.Reader;
  * @author 小龙哥
  * @description 通过类加载器获得resource的辅助类
  * @date 2024/04/07
-  
- * @copyright 无
+ * @github https://github.com/xtpacz
+ * @copyright 无copyright
  */
 public class Resources {
 

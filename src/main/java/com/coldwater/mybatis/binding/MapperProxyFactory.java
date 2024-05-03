@@ -8,7 +8,11 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
+ * @author 小龙哥
  * @description 映射器代理工厂
+ * @date 2024/3/26
+ * @github https://github.com/xtpacz/CodeDesignTutorials
+ * @Copyright 无copyright
  */
 public class MapperProxyFactory<T> {
 

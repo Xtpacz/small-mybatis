@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @author 小龙哥
  * @description 池状态
+ * @date 2024/04/20
+ * @github https://github.com/xtpacz
+ * @copyright 无copyright
  */
 public class PoolState {
 

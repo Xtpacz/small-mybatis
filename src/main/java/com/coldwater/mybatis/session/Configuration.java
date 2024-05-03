@@ -4,8 +4,16 @@ import com.coldwater.mybatis.binding.MapperRegistry;
 import com.coldwater.mybatis.datasource.druid.DruidDataSourceFactory;
 import com.coldwater.mybatis.datasource.pooled.PooledDataSourceFactory;
 import com.coldwater.mybatis.datasource.unpooled.UnpooledDataSourceFactory;
+import com.coldwater.mybatis.executor.Executor;
+import com.coldwater.mybatis.executor.SimpleExecutor;
+import com.coldwater.mybatis.executor.resultset.DefaultResultSetHandler;
+import com.coldwater.mybatis.executor.resultset.ResultSetHandler;
+import com.coldwater.mybatis.executor.statement.PreparedStatementHandler;
+import com.coldwater.mybatis.executor.statement.StatementHandler;
+import com.coldwater.mybatis.mapping.BoundSql;
 import com.coldwater.mybatis.mapping.Environment;
 import com.coldwater.mybatis.mapping.MappedStatement;
+import com.coldwater.mybatis.transaction.Transaction;
 import com.coldwater.mybatis.transaction.jdbc.JdbcTransactionFactory;
 import com.coldwater.mybatis.type.TypeAliasRegistry;
 
@@ -13,7 +21,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * @author 小龙哥
  * @description 配置项
+ * @date 2024/04/06
+ * @github https://github.com/xtpacz
+ * @copyright 无copyright
  */
 public class Configuration {
 
@@ -72,4 +84,26 @@ public class Configuration {
     public void setEnvironment(Environment environment) {
         this.environment = environment;
     }
+
+    /**
+     * 创建结果集处理器
+     */
+    public ResultSetHandler newResultSetHandler(Executor executor, MappedStatement mappedStatement, BoundSql boundSql) {
+        return new DefaultResultSetHandler(executor, mappedStatement, boundSql);
+    }
+
+    /**
+     * 生产执行器
+     */
+    public Executor newExecutor(Transaction transaction) {
+        return new SimpleExecutor(this, transaction);
+    }
+
+    /**
+     * 创建语句处理器
+     */
+    public StatementHandler newStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameter, ResultHandler resultHandler, BoundSql boundSql) {
+        return new PreparedStatementHandler(executor, mappedStatement, parameter, resultHandler, boundSql);
+    }
+
 }
