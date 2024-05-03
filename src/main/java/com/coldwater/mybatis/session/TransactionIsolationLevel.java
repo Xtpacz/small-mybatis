@@ -3,11 +3,11 @@ package com.coldwater.mybatis.session;
 import java.sql.Connection;
 
 /**
- * @author 小傅哥，微信：fustack
+ * @author 小龙哥
  * @description 事务的隔离级别
- * @date 2022/04/13
- * @github https://github.com/fuzhengwei
- * @copyright 公众号：bugstack虫洞栈 | 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
+ * @date 2024/04/13
+  
+ * @copyright 无
  */
 public enum TransactionIsolationLevel {
 

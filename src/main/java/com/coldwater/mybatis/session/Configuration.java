@@ -2,6 +2,8 @@ package com.coldwater.mybatis.session;
 
 import com.coldwater.mybatis.binding.MapperRegistry;
 import com.coldwater.mybatis.datasource.druid.DruidDataSourceFactory;
+import com.coldwater.mybatis.datasource.pooled.PooledDataSourceFactory;
+import com.coldwater.mybatis.datasource.unpooled.UnpooledDataSourceFactory;
 import com.coldwater.mybatis.mapping.Environment;
 import com.coldwater.mybatis.mapping.MappedStatement;
 import com.coldwater.mybatis.transaction.jdbc.JdbcTransactionFactory;
@@ -11,10 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @description 配置项，贯穿始终
- * @author：小龙哥
- * @date: 2024/5/2
- * @Copyright： 没有copyright
+ * @description 配置项
  */
 public class Configuration {
 
@@ -32,7 +31,10 @@ public class Configuration {
 
     public Configuration() {
         typeAliasRegistry.registerAlias("JDBC", JdbcTransactionFactory.class);
+
         typeAliasRegistry.registerAlias("DRUID", DruidDataSourceFactory.class);
+        typeAliasRegistry.registerAlias("UNPOOLED", UnpooledDataSourceFactory.class);
+        typeAliasRegistry.registerAlias("POOLED", PooledDataSourceFactory.class);
     }
 
     public void addMappers(String packageName) {

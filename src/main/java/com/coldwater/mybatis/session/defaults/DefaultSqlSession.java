@@ -12,7 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @author 小龙哥
  * @description 默认SqlSession实现类
+ * @date 2024/04/01
+  
+ * @copyright 无
  */
 public class DefaultSqlSession implements SqlSession {
 

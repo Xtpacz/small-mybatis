@@ -9,11 +9,11 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author 小傅哥，微信：fustack
+ * @author 小龙哥
  * @description 映射器注册机
- * @date 2022/04/01
- * @github https://github.com/fuzhengwei
- * @copyright 公众号：bugstack虫洞栈 | 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
+ * @date 2024/04/01
+  
+ * @copyright 无
  */
 public class MapperRegistry {
 

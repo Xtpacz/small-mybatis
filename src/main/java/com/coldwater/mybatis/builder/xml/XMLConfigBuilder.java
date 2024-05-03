@@ -94,7 +94,7 @@ public class XMLConfigBuilder extends BaseBuilder {
                 dataSourceFactory.setProperties(props);
                 DataSource dataSource = dataSourceFactory.getDataSource();
 
-                // 构建
+                // 构建环境
                 Environment.Builder environmentBuilder = new Environment.Builder(id)
                         .transactionFactory(txFactory)
                         .dataSource(dataSource);
@@ -149,5 +149,6 @@ public class XMLConfigBuilder extends BaseBuilder {
             configuration.addMapper(Resources.classForName(namespace));
         }
     }
+
 
 }

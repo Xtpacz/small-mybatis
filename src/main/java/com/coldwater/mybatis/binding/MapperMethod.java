@@ -8,11 +8,11 @@ import com.coldwater.mybatis.session.SqlSession;
 import java.lang.reflect.Method;
 
 /**
- * @author 小傅哥，微信：fustack
+ * @author 小龙哥
  * @description 映射器方法
- * @date 2022/04/06
- * @github https://github.com/fuzhengwei
- * @copyright 公众号：bugstack虫洞栈 | 博客：https://bugstack.cn - 沉淀、分享、成长，让自己和他人都能有所收获！
+ * @date 2024/04/06
+  
+ * @copyright 无
  */
 public class MapperMethod {
 
