@@ -6,7 +6,7 @@ import java.util.Iterator;
  * @author 小龙哥
  * @description 属性分解标记
  * @date 2024/5/2
- * @github https://github.com/xtpacz/CodeDesignTutorials
+ * @github https://github.com/xtpacz
  * @Copyright 无copyright
  */
 public class PropertyTokenizer implements Iterable<PropertyTokenizer>, Iterator<PropertyTokenizer> {

@@ -12,7 +12,7 @@ import java.util.Map;
  * @author 小龙哥
  * @description 元对象
  * @date 2024/5/2
- * @github https://github.com/xtpacz/CodeDesignTutorials
+ * @github https://github.com/xtpacz
  * @Copyright 无copyright
  */
 public class MetaObject {

@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author 小龙哥
  * @description 反射器，属性 get/set 的映射器
  * @date 2024/5/2
- * @github https://github.com/xtpacz/CodeDesignTutorials
+ * @github https://github.com/xtpacz
  * @Copyright 无copyright
  */
 public class Reflector {

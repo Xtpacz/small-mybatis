@@ -13,7 +13,7 @@ import java.util.Map;
  * @author 小龙哥
  * @description Map 包装器
  * @date 2024/5/2
- * @github https://github.com/xtpacz/CodeDesignTutorials
+ * @github https://github.com/xtpacz
  * @Copyright 无copyright
  */
 public class MapWrapper extends BaseWrapper {

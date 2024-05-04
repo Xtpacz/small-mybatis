@@ -15,7 +15,7 @@ import java.util.List;
  * @author 小龙哥
  * @description 预处理语句处理器（PREPARED）
  * @date 2024/4/28
- * @github https://github.com/xtpacz/CodeDesignTutorials
+ * @github https://github.com/xtpacz
  * @Copyright 无copyright
  */
 public class PreparedStatementHandler extends BaseStatementHandler{

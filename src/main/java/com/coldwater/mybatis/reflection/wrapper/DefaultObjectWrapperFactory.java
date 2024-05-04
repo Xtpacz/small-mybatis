@@ -6,7 +6,7 @@ import com.coldwater.mybatis.reflection.MetaObject;
  * @author 小龙哥
  * @description 默认对象包装工厂
  * @date 2024/5/2
- * @github https://github.com/xtpacz/CodeDesignTutorials
+ * @github https://github.com/xtpacz
  * @Copyright 无copyright
  */
 public class DefaultObjectWrapperFactory implements ObjectWrapperFactory{
