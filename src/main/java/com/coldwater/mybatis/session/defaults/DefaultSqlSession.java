@@ -4,6 +4,9 @@ import com.coldwater.mybatis.executor.Executor;
 import com.coldwater.mybatis.mapping.MappedStatement;
 import com.coldwater.mybatis.session.Configuration;
 import com.coldwater.mybatis.session.SqlSession;
+import com.alibaba.fastjson.JSON;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
 
@@ -15,6 +18,8 @@ import java.util.List;
  * @copyright 无copyright
  */
 public class DefaultSqlSession implements SqlSession {
+
+    private Logger logger = LoggerFactory.getLogger(DefaultSqlSession.class);
 
     private Configuration configuration;
     private Executor executor;
@@ -31,6 +36,7 @@ public class DefaultSqlSession implements SqlSession {
 
     @Override
     public <T> T selectOne(String statement, Object parameter) {
+        logger.info("执行查询 statement：{} parameter：{}", statement, JSON.toJSONString(parameter));
         MappedStatement ms = configuration.getMappedStatement(statement);
         List<T> list = executor.query(ms, parameter, Executor.NO_RESULT_HANDLER, ms.getSqlSource().getBoundSql(parameter));
         return list.get(0);
