@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * @author 小龙哥
  * @description 脚本语言注册器
- * @date 2024/5/17
+ * 
  * @github https://github.com/xtpacz
  * @Copyright 无copyright
  */

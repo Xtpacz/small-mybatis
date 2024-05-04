@@ -3,12 +3,13 @@ package com.coldwater.mybatis.type;
 import com.coldwater.mybatis.session.Configuration;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
  * @author 小龙哥
  * @description 类型处理器的基类
- * @date 2024/5/25
+ * 
  * @github https://github.com/xtpacz
  * @Copyright 无copyright
  */
@@ -26,6 +27,13 @@ public abstract class BaseTypeHandler<T> implements TypeHandler<T> {
         setNonNullParameter(ps, i, parameter, jdbcType);
     }
 
+    @Override
+    public T getResult(ResultSet rs, String columnName) throws SQLException {
+        return getNullableResult(rs, columnName);
+    }
+
     protected abstract void setNonNullParameter(PreparedStatement ps, int i, T parameter, JdbcType jdbcType) throws SQLException;
+
+    protected abstract T getNullableResult(ResultSet rs, String columnName) throws SQLException;
 
 }

@@ -7,6 +7,7 @@ import com.coldwater.mybatis.mapping.BoundSql;
 import com.coldwater.mybatis.mapping.MappedStatement;
 import com.coldwater.mybatis.session.Configuration;
 import com.coldwater.mybatis.session.ResultHandler;
+import com.coldwater.mybatis.session.RowBounds;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,7 +16,7 @@ import java.sql.Statement;
 /**
  * @author 小龙哥
  * @description 语句处理器抽象基类
- * @date 2024/04/26
+ * 
  * @github https://github.com/xtpacz
  * @copyright 无copyright
  */
@@ -29,17 +30,19 @@ public abstract class BaseStatementHandler implements StatementHandler {
     protected final ResultSetHandler resultSetHandler;
     protected final ParameterHandler parameterHandler;
 
+    protected final RowBounds rowBounds;
     protected BoundSql boundSql;
 
-    public BaseStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameterObject, ResultHandler resultHandler, BoundSql boundSql) {
+    public BaseStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler, BoundSql boundSql) {
         this.configuration = mappedStatement.getConfiguration();
         this.executor = executor;
         this.mappedStatement = mappedStatement;
+        this.rowBounds = rowBounds;
         this.boundSql = boundSql;
 
         this.parameterObject = parameterObject;
         this.parameterHandler = configuration.newParameterHandler(mappedStatement, parameterObject, boundSql);
-        this.resultSetHandler = configuration.newResultSetHandler(executor, mappedStatement, boundSql);
+        this.resultSetHandler = configuration.newResultSetHandler(executor, mappedStatement, rowBounds, resultHandler, boundSql);
     }
 
     @Override

@@ -11,7 +11,7 @@ import java.util.*;
 /**
  * @author 小龙哥
  * @description 映射器方法
- * @date 2024/04/06
+ * 
  * @github https://github.com/xtpacz
  * @copyright 无copyright
  */
@@ -116,13 +116,13 @@ public class MapperMethod {
             final Class<?>[] argTypes = method.getParameterTypes();
             for (int i = 0; i < argTypes.length; i++) {
                 String paramName = String.valueOf(params.size());
-                // 不做 Param 的实现，这部分不处理。如果扩展学习，需要添加 Param 注解并做扩展实现。
                 params.put(i, paramName);
             }
             return params;
         }
 
     }
+
 
     /**
      * 参数map，静态内部类,更严格的get方法，如果没有相应的key，报错

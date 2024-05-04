@@ -4,6 +4,7 @@ import com.coldwater.mybatis.executor.Executor;
 import com.coldwater.mybatis.mapping.BoundSql;
 import com.coldwater.mybatis.mapping.MappedStatement;
 import com.coldwater.mybatis.session.ResultHandler;
+import com.coldwater.mybatis.session.RowBounds;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,14 +15,14 @@ import java.util.List;
 /**
  * @author 小龙哥
  * @description 预处理语句处理器（PREPARED）
- * @date 2024/4/28
+ * 
  * @github https://github.com/xtpacz
  * @Copyright 无copyright
  */
 public class PreparedStatementHandler extends BaseStatementHandler{
 
-    public PreparedStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameterObject, ResultHandler resultHandler, BoundSql boundSql) {
-        super(executor, mappedStatement, parameterObject, resultHandler, boundSql);
+    public PreparedStatementHandler(Executor executor, MappedStatement mappedStatement, Object parameterObject, RowBounds rowBounds,  ResultHandler resultHandler, BoundSql boundSql) {
+        super(executor, mappedStatement, parameterObject, rowBounds, resultHandler, boundSql);
     }
 
     @Override

@@ -17,7 +17,7 @@ import java.io.IOException;
 /**
  * @author 小龙哥
  * @description 单元测试
- * @date 2024/3/26
+ * 
  * @github https://github.com/xtpacz
  * @Copyright 无copyright
  */
@@ -53,6 +53,5 @@ public class ApiTest {
         User user = userDao.queryUserInfo(new User(1L, "10001"));
         logger.info("测试结果：{}", JSON.toJSONString(user));
     }
-
 
 }

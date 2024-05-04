@@ -21,7 +21,7 @@ import java.util.Properties;
 /**
  * @author 小龙哥
  * @description XML配置构建器，建造者模式，继承BaseBuilder
- * @date 2024/04/06
+ * 
  * @github https://github.com/xtpacz
  * @copyright 无copyright
  */

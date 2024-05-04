@@ -3,10 +3,12 @@ package com.coldwater.mybatis.mapping;
 import com.coldwater.mybatis.scripting.LanguageDriver;
 import com.coldwater.mybatis.session.Configuration;
 
+import java.util.List;
+
 /**
  * @author 小龙哥
  * @description 映射语句类
- * @date 2024/04/06
+ * 
  * @github https://github.com/xtpacz
  * @copyright 无copyright
  */
@@ -18,6 +20,7 @@ public class MappedStatement {
     private SqlSource sqlSource;
     Class<?> resultType;
     private LanguageDriver lang;
+    private List<ResultMap> resultMaps;
 
     MappedStatement() {
         // constructor disabled
@@ -45,6 +48,15 @@ public class MappedStatement {
             return mappedStatement;
         }
 
+        public String id() {
+            return mappedStatement.id;
+        }
+
+        public Builder resultMaps(List<ResultMap> resultMaps) {
+            mappedStatement.resultMaps = resultMaps;
+            return this;
+        }
+
     }
 
     public Configuration getConfiguration() {
@@ -69,6 +81,10 @@ public class MappedStatement {
 
     public LanguageDriver getLang() {
         return lang;
+    }
+
+    public List<ResultMap> getResultMaps() {
+        return resultMaps;
     }
 
 }

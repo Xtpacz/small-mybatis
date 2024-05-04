@@ -14,7 +14,7 @@ import java.sql.SQLException;
 /**
  * @author 小龙哥
  * @description 默认的 DefaultSqlSessionFactory
- * @date 2024/04/01
+ * 
  * @github https://github.com/xtpacz
  * @copyright 无copyright
  */

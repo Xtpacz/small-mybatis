@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * @author 小龙哥
  * @description JDBC类型枚举
- * @date 2024/04/12
+ * 
  * @github https://github.com/xtpacz
  * @copyright 无copyright
  */

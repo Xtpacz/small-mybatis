@@ -3,7 +3,7 @@ package com.coldwater.mybatis.parsing;
 /**
  * @author 小龙哥
  * @description 普通记号解析器，处理#{}和${}参数
- * @date 2024/5/17
+ * 
  * @github https://github.com/xtpacz
  * @Copyright 无copyright
  */

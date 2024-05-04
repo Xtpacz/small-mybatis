@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * @author 小龙哥
  * @description 静态SQL源码
- * @date 2024/5/17
+ * 
  * @github https://github.com/xtpacz
  * @Copyright 无copyright
  */

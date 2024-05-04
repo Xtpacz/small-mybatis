@@ -8,7 +8,7 @@ import com.coldwater.mybatis.type.TypeHandlerRegistry;
 /**
  * @author 小龙哥
  * @description 参数映射 #{property,javaType=int,jdbcType=NUMERIC}
- * @date 2024/04/12
+ * 
  * @github https://github.com/xtpacz
  * @copyright 无copyright
  */

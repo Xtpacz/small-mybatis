@@ -3,6 +3,7 @@ package com.coldwater.mybatis.session.defaults;
 import com.coldwater.mybatis.executor.Executor;
 import com.coldwater.mybatis.mapping.MappedStatement;
 import com.coldwater.mybatis.session.Configuration;
+import com.coldwater.mybatis.session.RowBounds;
 import com.coldwater.mybatis.session.SqlSession;
 import com.alibaba.fastjson.JSON;
 import org.slf4j.Logger;
@@ -13,7 +14,7 @@ import java.util.List;
 /**
  * @author 小龙哥
  * @description 默认SqlSession实现类
- * @date 2024/04/01
+ * 
  * @github https://github.com/xtpacz
  * @copyright 无copyright
  */
@@ -38,7 +39,7 @@ public class DefaultSqlSession implements SqlSession {
     public <T> T selectOne(String statement, Object parameter) {
         logger.info("执行查询 statement：{} parameter：{}", statement, JSON.toJSONString(parameter));
         MappedStatement ms = configuration.getMappedStatement(statement);
-        List<T> list = executor.query(ms, parameter, Executor.NO_RESULT_HANDLER, ms.getSqlSource().getBoundSql(parameter));
+        List<T> list = executor.query(ms, parameter, RowBounds.DEFAULT, Executor.NO_RESULT_HANDLER, ms.getSqlSource().getBoundSql(parameter));
         return list.get(0);
     }
 

@@ -10,7 +10,7 @@ import java.sql.SQLException;
 /**
  * @author 小龙哥
  * @description JDBC 事务，直接利用 JDBC 的 commit、rollback。依赖于数据源获得的连接来管理事务范围。
- * @date 2024/04/13
+ * 
  * @github https://github.com/xtpacz
  * @copyright 无copyright
  */

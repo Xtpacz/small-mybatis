@@ -6,7 +6,7 @@ import java.sql.SQLException;
 /**
  * @author 小龙哥
  * @description 事务接口
- * @date 2024/04/13
+ * 
  * @github https://github.com/xtpacz
  * @copyright 无copyright
  */

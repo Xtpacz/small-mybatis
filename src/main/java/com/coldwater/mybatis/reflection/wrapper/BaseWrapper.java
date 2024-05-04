@@ -9,7 +9,7 @@ import java.util.Map;
 /**
  * @author 小龙哥
  * @description 对象包装器抽象基类，提供一些工具方法
- * @date 2024/5/2
+ * 
  * @github https://github.com/xtpacz
  * @Copyright 无copyright
  */

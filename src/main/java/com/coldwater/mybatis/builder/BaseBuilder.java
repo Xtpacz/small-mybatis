@@ -7,7 +7,7 @@ import com.coldwater.mybatis.type.TypeHandlerRegistry;
 /**
  * @author 小龙哥
  * @description 构建器的基类，建造者模式
- * @date 2024/04/06
+ * 
  * @github https://github.com/xtpacz
  * @copyright 无copyright
  */
